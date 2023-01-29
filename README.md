@@ -27,15 +27,14 @@ For _utcar_ to work, we'll configure it in the alarm system as a new central sta
 
 	Usage of ./utcar:
 	  --port=12300: Listen port number (default: 12300)
-	  --addr="": Target addr (e.g. http://openhab.local:8080)
-	  --pwd="": Target password
-	  --user="": Target username
-
+	  -- mqttaddr=http://mqtt:1883
+          -- mqttuser=mqtt
+          -- mqttpwd=password
 Example:
 
-	./utcar -port=10000 --addr=https://localhost:8443 --user=yourname --pwd=yourpass
-	2014/09/25 06:40:32 Listing on port 10000...
-	2014/09/25 06:40:32 Pushing to localhost:8443
+	./utcar -port=10000 -- mqttaddr=http://mqtt:1883 -- mqttuser=mqtt -- mqttpwd=password
+	2014/09/25 06:40:32 Listing on port 12300...
+	2014/09/25 06:40:32 Pushing to mqtt:1883
 
 Example with environment variables:
 
@@ -73,7 +72,7 @@ If an (X)SIA message of UR is received, an OFF message is sent. Support for more
 
 You can also run utcar in a container:
 
-	docker run -p 10000:10000 tdeckers/utcar --port=10000 --addr=https://localhost:8443
+	docker run -p 12300:12300 ????/utcar --port=12300 -- mqttaddr=http://mqtt:1883
 
 Or alternatively:
 
