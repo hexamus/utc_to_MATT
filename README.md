@@ -1,6 +1,6 @@
 # UTC Alarm Receiver
 
-_utcar_ acts as a central station to a ATS alarm system and has been tested using an ATS2000IP system.  It might work with other variants as well.  The communication between the alarm system and utcar is using OH+XSIA protocol.  I'm not an expert, but I assume that any system that uses this protocol should be compatible (naive? me?).
+_utcar_to_MQTT_ acts as a central station to a ATS alarm system and has been tested using an ATSXX00IP system.  It might work with other variants as well.  The communication between the alarm system and utcar is using OH+XSIA protocol.  I'm not an expert, but I assume that any system that uses this protocol should be compatible (naive? me?).
 
 My use case:
 * leverage the alarms systems events (e.g. motion, window sensors) as input to home automation
