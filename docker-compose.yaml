@@ -1,0 +1,17 @@
+services:
+ utcar:
+  build:
+   context: .
+   dockerfile: DockerfileUTCAR
+  container_name: mqttutcar
+  environment:
+     - UTCAR_MQTTADDR=192.168.50.35:1883
+     - UTCAR_MQTTUSER=mqtt
+     - UTCAR_MQTTPWD=MQTT57hexa
+  expose:
+     - 12300
+  ports:
+     - 12300:12300
+ #   networks:
+  #    - backend
+  restart: unless-stopped
