@@ -5,9 +5,9 @@ services:
    dockerfile: DockerfileUTCAR
   container_name: mqttutcar
   environment:
-     - UTCAR_MQTTADDR=192.168.50.35:1883
-     - UTCAR_MQTTUSER=mqtt
-     - UTCAR_MQTTPWD=MQTT57hexa
+     - UTCAR_MQTTADDR=192.168.0.00:1883
+     - UTCAR_MQTTUSER=user
+     - UTCAR_MQTTPWD=password
   expose:
      - 12300
   ports:
