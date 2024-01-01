@@ -22,9 +22,9 @@ type SIA struct {
 	sequence string
 	receiver string
 	line     string
-	account  string
-	command  string
-	zone     string
+	account  string // N° code compte
+	command  string // code SIA
+	zone     string // numéro de zone
 }
 
 type Heartbeat struct {
