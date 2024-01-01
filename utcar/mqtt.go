@@ -42,14 +42,46 @@ func PublishMqtt(client MQTT.Client, sia SIA) error {
 	switch sia.command {
 	case "UA":
 		body = "ON"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
 	case "UR":
 		body = "OFF"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
+	case "BA":
+		body = "ALARME_ACTIVE"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
+	case "BR":
+		body = "ALARME_RESTAURE"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
+	case "CL":
+		body = "ARMEE"
+		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
+	case "OP":
+		body = "DESARME"
+		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
+        client.Publish(itemUrl, 0, false, body)
+        log.Printf("Publish %s to %s", body, itemUrl)
+    case "OR":
+		body = "DESARME"
+		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
+        client.Publish(itemUrl, 0, false, body)
+        log.Printf("Publish %s to %s", body, itemUrl)
+	case "CG":
+		body = "PARTIEL"
+		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
+        client.Publish(itemUrl, 0, false, body)
+        log.Printf("Publish %s to %s", body, itemUrl)
 	default:
 		return fmt.Errorf("Unsupported SIA command for pusher (%s)\n", sia.command)
 	}
-	itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
-	client.Publish(itemUrl, 0, false, body)
-	
-	log.Printf("Publish %s to %s", body, itemUrl)
 	return nil
 }
