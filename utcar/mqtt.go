@@ -60,6 +60,16 @@ func PublishMqtt(client MQTT.Client, sia SIA) error {
 		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
 		client.Publish(itemUrl, 0, false, body)
 		log.Printf("Publish %s to %s", body, itemUrl)
+	case "BB":
+		body = "EXCLUE"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
+	case "BU":
+	    	body = "INCLUE"
+		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
+		client.Publish(itemUrl, 0, false, body)
+		log.Printf("Publish %s to %s", body, itemUrl)
 	case "CL":
 		body = "ARMEE"
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
@@ -68,19 +78,22 @@ func PublishMqtt(client MQTT.Client, sia SIA) error {
 	case "OP":
 		body = "DESARME"
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
-        client.Publish(itemUrl, 0, false, body)
-        log.Printf("Publish %s to %s", body, itemUrl)
-    case "OR":
+       		client.Publish(itemUrl, 0, false, body)
+        	log.Printf("Publish %s to %s", body, itemUrl)
+   	case "OR":
 		body = "DESARME"
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
-        client.Publish(itemUrl, 0, false, body)
-        log.Printf("Publish %s to %s", body, itemUrl)
+        	client.Publish(itemUrl, 0, false, body)
+        	log.Printf("Publish %s to %s", body, itemUrl)
 	case "CG":
 		body = "PARTIEL"
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
-        client.Publish(itemUrl, 0, false, body)
-        log.Printf("Publish %s to %s", body, itemUrl)
+        	client.Publish(itemUrl, 0, false, body)
+        	log.Printf("Publish %s to %s", body, itemUrl)
 	default:
+	    itemUrl := strings.Join([]string{"alarm/erreur" , "/state"}, "")
+	    client.Publish(itemUrl, 0, false, sia.command)
+	    log.Printf("Publish %s to %s", sia.command, itemUrl)
 		return fmt.Errorf("Unsupported SIA command for pusher (%s)\n", sia.command)
 	}
 	return nil
