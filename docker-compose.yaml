@@ -8,6 +8,7 @@ services:
      - UTCAR_MQTTADDR=192.168.0.00:1883
      - UTCAR_MQTTUSER=user
      - UTCAR_MQTTPWD=password
+     - UTCAR_MQTT_TOPÌC=alarm
   expose:
      - 12300
   ports:
