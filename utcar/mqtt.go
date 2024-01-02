@@ -40,6 +40,7 @@ func ConnectMqtt(mqttaddress string, mqttuser string, mqttpwd string) MQTT.Clien
 func PublishMqtt(client MQTT.Client, sia SIA) error {
 	var body string
 	switch sia.command {
+	//information pour les zones
 	case "UA":
 		body = "ON"
 		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
@@ -70,6 +71,8 @@ func PublishMqtt(client MQTT.Client, sia SIA) error {
 		itemUrl := strings.Join([]string{"alarm/zone_", sia.zone, "/state"}, "")
 		client.Publish(itemUrl, 0, false, body)
 		log.Printf("Publish %s to %s", body, itemUrl)
+	
+	//information pour les groupes	
 	case "CL":
 		body = "ARMEE"
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
