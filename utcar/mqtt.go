@@ -93,6 +93,13 @@ func PublishMqtt(client MQTT.Client, sia SIA) error {
 		itemUrl := strings.Join([]string{"alarm/groupe_", sia.account, "/state"}, "")
         	client.Publish(itemUrl, 0, false, body)
         	log.Printf("Publish %s to %s", body, itemUrl)
+	//information pour les tests
+	case "RP":
+		body = "AUTO"
+		itemUrl := strings.Join([]string{"alarm/TEST", sia.account, "/state"}, "")
+        	client.Publish(itemUrl, 0, false, body)
+        	log.Printf("Publish %s to %s", body, itemUrl)
+		
 	default:
 	    itemUrl := strings.Join([]string{"alarm/erreur" , "/state"}, "")
 	    client.Publish(itemUrl, 0, false, sia.command)
